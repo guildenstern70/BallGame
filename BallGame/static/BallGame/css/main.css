@@ -1,0 +1,40 @@
+/*
+ *
+ * The Ball Game Project
+ *
+ * Copyright (c) 2021 Alessio Saltarin
+ * This software is distributed under MIT License.
+ * See LICENSE.
+ *
+ */
+
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin: 1rem 0 5rem 0;
+    background-color: #d9d9ea;
+    border-radius: .3rem;
+    display: block;
+}
+
+.jumbotitle {
+    font-weight: bold;
+}
+
+.starter-template {
+    text-align: center;
+    margin-top: 6em;
+}
+
+.feather {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
