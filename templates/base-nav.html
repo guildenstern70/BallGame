@@ -1,0 +1,19 @@
+{% extends "skeleton.html" %}
+
+{% block title %}
+    <title> SmartDjango | {{ title }} </title>
+{% endblock %}
+
+{% block content %}
+
+    {% include "header.html" %}
+
+    <main class="container mt-5 flex-shrink-0">
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    {% include "footer.html" %}
+
+
+{% endblock %}

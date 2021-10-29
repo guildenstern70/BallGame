@@ -1,0 +1,65 @@
+{% extends "base-nav.html" %}
+{% load icon %}
+{% load static %}
+
+{% block title %}
+    <title> SmartDjango | {{ title }} </title>
+{% endblock %}
+
+{% block pagecss %}
+    <link rel="stylesheet" type="text/css" href="{% static "SmartDjango/css/login.css" %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-3">
+                &nbsp;
+            </div>
+            <div class="col-6">
+                <div class="jumbotron border mt-4">
+                    <form name="login" action="/login/" method="POST">
+                    {% csrf_token %}
+
+                      <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="username">
+                        <div id="usernameHelp" class="form-text">Try with guest/guest</div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                      </div>
+
+                      <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                      </div>
+
+            {% if errors %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Unknown username or wrong password
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+
+                        </button>
+                    </div>
+            {% endif %}
+
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      &nbsp;
+                      <a href="/" class="btn btn-secondary">Cancel</a>
+                    </form>
+                    <div class="text-end text-secondary mt-3">
+                        Need to register? Click <a href="/register">here</a>.
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                &nbsp;
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

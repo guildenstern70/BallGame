@@ -1,0 +1,43 @@
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-primary ms-3" href="/home">BallGame
+            {% if header %} | {{ header }} {%  endif %}
+            </a>
+
+            {% if user.is_authenticated %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a id="homelink" class="nav-link active" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pageonelink" class="nav-link" href="/another?title=Page%20One">Page One</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pagetwolink" class="nav-link" href="/another?title=Page%20Two">Page Two</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <ul class="navbar-nav me-4">
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle"
+                           href="#" id="dropdown01" data-bs-toggle="dropdown"
+                           aria-expanded="false">{{ username | title }}</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" href="#">Details</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+</header>
