@@ -6,15 +6,6 @@
 #  See LICENSE.
 #
 
-#
-#  The Ball Game Project
-#
-#
-
-#
-#  The Ball Game Project
-#
-#
 from django.contrib.auth.hashers import make_password
 from django.db import migrations
 

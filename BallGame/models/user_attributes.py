@@ -14,4 +14,3 @@ from django.contrib.auth import get_user_model
 class UserAttributes(models.Model):
     has_team = models.BooleanField(default=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING)
-

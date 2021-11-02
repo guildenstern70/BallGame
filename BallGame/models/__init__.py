@@ -6,4 +6,7 @@
 #  See LICENSE.
 #
 
+from .player import Player
+from .user_attributes import UserAttributes
+
 
