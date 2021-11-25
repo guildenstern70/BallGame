@@ -12,16 +12,25 @@
 
 {% block main %}
     <div class="container">
-        <h1 class="mt-2">Ball Game</h1>
-        <p class="lead">Welcome to the Ball Game baseball simulator.</p>
-        <p>User has already a team? =  {{ userdata.has_team }}</p>
+        <div class="row">
+            <div class="col-7">
+                <h1 class="mt-2">Ball Game</h1>
+                <p class="lead">Welcome to the Ball Game baseball simulator.</p>
+            </div>
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                      <label for="console" class="form-label">Game Console</label>
+                      <textarea class="form-control" id="console" rows="10">{{ console }}</textarea>
+                    </div>
+                </form>
+            </div>
+          </div>
+
+
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-            &nbsp;
-        </div>
-      </div>
-    </div>
+
+
+
 {% endblock %}
 

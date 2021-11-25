@@ -12,8 +12,10 @@
 #
 import logging
 import random
+from django.apps import apps
 
 from BallGame.models import Player
+
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +25,13 @@ def get_positions():
     Get baseball positions
     """
     return ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
+
+
+def db_players_count():
+    logger.info('Reading DB players...')
+    players = apps.get_model('BallGame', 'Player')
+    logger.info('Done.')
+    return str(players.objects.count())
 
 
 def load_data_from_file(filename):

@@ -12,7 +12,10 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
-from BallGame.services import get_user_data
+
+from BallGame.services import get_user_data_message
+from BallGame.settings import BALL_GAME_VERSION
+from BallGame.utils import db_players_count
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +24,7 @@ def index(request):
     template = loader.get_template('index.html')
     context = {
         'title': 'BallGame',
-        'version': '0.1'
+        'version': BALL_GAME_VERSION,
     }
     return HttpResponse(template.render(context, request))
 
@@ -61,11 +64,16 @@ def logout_view(request):
 @login_required
 def home(request):
     template = loader.get_template('homepage.html')
-    # Initialize user if not done yet
+
+    # Welcome message to send to console
+    welcome = "Welcome to BallGame v." + BALL_GAME_VERSION + ".\n\n"
+    welcome += "Players DB with " + db_players_count() + " players.\n"
+    welcome += get_user_data_message(request) + "\n"
+
     context = {
         'title': 'Homepage',
         'username': request.user.username,
-        'userdata': get_user_data(request)
+        'console': welcome
     }
     return HttpResponse(template.render(context, request))
 

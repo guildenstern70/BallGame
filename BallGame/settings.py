@@ -6,7 +6,10 @@
 #  See LICENSE.
 #
 
+import sys
 from pathlib import Path
+
+BALL_GAME_VERSION = '0.1.0'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -85,13 +88,8 @@ LOGGING = {
         'console': {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
+            'stream': sys.stdout
         },
-    },
-    'django.requests': {
-        # The requests library is too verbose in it's logging, reducing the verbosity in our logs.
-        'handlers': ['console'],
-        'level': 'WARNING',
-        'propagate': False,
     },
     'root': {
         'handlers': ['console'],
