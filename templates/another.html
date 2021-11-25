@@ -1,0 +1,17 @@
+{% extends "base-nav.html" %}
+{% load icon %}
+{% load static %}
+
+{% block title %}
+    <title> SmartDjango | {{ title }} </title>
+{% endblock %}
+
+{% block pagecss %}
+    <link rel="stylesheet" type="text/css" href="{% static "BallGame/css/homepage.css" %}">
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        {{ title }}
+    </div>
+{% endblock %}

@@ -47,9 +47,12 @@ def create_players_db(apps, schema_editor):
         first_names = load_data_from_file('resources/male-first-names.txt')
         last_names = load_data_from_file('resources/last-names.txt')
         logger.info("  Done loading resources.")
-        for position in get_positions():
-            player = Player.create(position, first_names, last_names)
-            logger.info("Created player: %s", str(player))
-            player.save(player)
-        logger.info("Done creating players database.")
+        created_players = 0
+        while created_players < 50:
+            for position in get_positions():
+                player = Player.create(position, first_names, last_names)
+                player.save(player)
+                created_players += 1
+        logger.info("Done creating players database with %d players.", created_players)
+
 

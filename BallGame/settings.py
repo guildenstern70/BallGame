@@ -87,6 +87,12 @@ LOGGING = {
             'formatter': 'simple',
         },
     },
+    'django.requests': {
+        # The requests library is too verbose in it's logging, reducing the verbosity in our logs.
+        'handlers': ['console'],
+        'level': 'WARNING',
+        'propagate': False,
+    },
     'root': {
         'handlers': ['console'],
         'level': 'INFO',

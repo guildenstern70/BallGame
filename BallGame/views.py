@@ -70,4 +70,16 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required
+def another(request):
+    template = loader.get_template('another.html')
+    title = request.GET.get('title', 'Another page')
+    context = {
+        'username': request.user.username,
+        'title': title,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
 

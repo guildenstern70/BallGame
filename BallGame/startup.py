@@ -6,9 +6,7 @@
 #  See LICENSE.
 #
 import logging
-from os.path import exists
 from django.apps import AppConfig, apps
-from BallGame.services import create_player, get_positions, load_data_from_file
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +15,7 @@ class Startup(AppConfig):
     """
     Code to run on application startup.
     """
+    logger.info("Welcome to BallGame")
     name = 'BallGame'
     verbose_name = "Baseball Sim"
 
