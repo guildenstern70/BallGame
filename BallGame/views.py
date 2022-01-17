@@ -1,7 +1,7 @@
 #
 #  The Ball Game Project
 #
-#  Copyright (c) 2021 Alessio Saltarin
+#  Copyright (c) 2022 Alessio Saltarin
 #  This software is distributed under MIT License.
 #  See LICENSE.
 #
@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 
-
-from BallGame.services import get_user_data_message
+from BallGame.services.user_attributes_service import get_user_data_message
 from BallGame.settings import BALL_GAME_VERSION
 from BallGame.utils import db_players_count
 

@@ -1,7 +1,7 @@
 #
 #  The Ball Game Project
 #
-#  Copyright (c) 2021 Alessio Saltarin
+#  Copyright (c) 2022 Alessio Saltarin
 #  This software is distributed under MIT License.
 #  See LICENSE.
 #
@@ -19,14 +19,14 @@ class Player(models.Model):
     weight = models.IntegerField()
 
     @classmethod
-    def create(cls, position, first_names, last_names):
+    def create(cls, position, first_names_collection, last_names_collection):
         """
         Create a new player
         """
         player = cls(position=position)
         player.age = random.randint(17, 35)
-        player.first_name = random.choice(first_names)
-        player.last_name = random.choice(last_names)
+        player.first_name = random.choice(first_names_collection)
+        player.last_name = random.choice(last_names_collection)
         player.height = random.randint(160, 210)
         player.weight = random.randint(58, 120)
         return player
