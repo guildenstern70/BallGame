@@ -1,4 +1,4 @@
 venv/
 .idea/
-SmartDjango/__pycache__/
+BallGame/__pycache__/
 db.sqlite3

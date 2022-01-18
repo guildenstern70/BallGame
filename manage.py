@@ -1,17 +1,5 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
-#
-#  The Ball Game Project
-#
-#  Copyright (c) 2022 Alessio Saltarin
-#  This software is distributed under MIT License.
-#  See LICENSE.
-#
-
-#  The Ball Game Project
-#
-#
-
 import os
 import sys
 

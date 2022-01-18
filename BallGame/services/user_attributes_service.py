@@ -7,8 +7,7 @@
 #
 import logging
 
-from BallGame.dao import UsersDAO
-from BallGame.dao.userattributes_dao import UserAttributesDAO
+from BallGame.dao import UsersDAO, UserAttributesDAO
 from BallGame.models import UserAttributes
 
 logger = logging.getLogger(__name__)

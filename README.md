@@ -2,7 +2,7 @@
 
 A statistical baseball simulation.
 
-#### Admin App
+### Admin App
 
 If not already done, create super-user with
 
@@ -22,5 +22,13 @@ To create and populate the database run:
 
 The database player is created when running the second migration, 'player_userattributes'.
 
+### Virtual Environment
 
+Activate with
+
+    source ./venv/bin/activate
+
+Deactivate with
+
+    deactivate
 

@@ -6,16 +6,10 @@
 #  See LICENSE.
 #
 
-#
-#  The Ball Game Project
-#
-#
 import logging
-import random
 from django.apps import apps
 
 from BallGame.models import Player
-
 
 logger = logging.getLogger(__name__)
 
