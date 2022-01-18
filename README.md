@@ -1,6 +1,8 @@
 # BallGame
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![BallGame CI](https://github.com/guildenstern70/BallGame/actions/workflows/ballgame.yml/badge.svg)](https://github.com/guildenstern70/BallGame/actions/workflows/ballgame.yml)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2f8278ac384f478598006b058249b4e9)](https://www.codacy.com/gh/guildenstern70/BallGame/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=guildenstern70/BallGame&amp;utm_campaign=Badge_Grade)
 
 
 A statistical baseball simulation.
