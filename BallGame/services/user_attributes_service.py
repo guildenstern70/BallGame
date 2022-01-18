@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 def create_user_attributes(request_user):
     logging.info('Creating User Attributes for User = ' + request_user)
     userdao = UsersDAO()
-    user = userdao.get_user(request_user)
+    user = userdao.find_user(request_user)
     user_attr = UserAttributes.create(False, user)
     user_attr.save()
 
@@ -29,10 +29,10 @@ def get_user_data(request):
     logger.info('Getting user data for user = ' + username)
     user_attributes = UserAttributesDAO()
     if user_attributes.userdata_exists_for(username):
-        user_data = user_attributes.get_user_data(username)
+        user_data = user_attributes.get_user_attributes(username)
     else:
         create_user_attributes(username)
-        user_data = user_attributes.get_user_data(username)
+        user_data = user_attributes.get_user_attributes(username)
     if user_data:
         logger.info('Found user data for user = ' + username)
     else:

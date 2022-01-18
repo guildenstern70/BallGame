@@ -1,11 +1,10 @@
-"""
-ASGI config for BallGame project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
-"""
+#
+#  The Ball Game Project
+#
+#  Copyright (c) 2022 Alessio Saltarin
+#  This software is distributed under MIT License.
+#  See LICENSE.
+#
 
 import os
 

@@ -16,7 +16,7 @@ class UsersDAO:
     Users DAO
     """
 
-    def get_user(self, user_name):
+    def find_user(self, user_name):
         try:
             return self._model.objects.get(username=user_name)
         except ObjectDoesNotExist:

@@ -16,7 +16,7 @@ class UserAttributesDAO:
     UserAttributes DAO
     """
 
-    def get_user_data(self, request_user):
+    def get_user_attributes(self, request_user):
         return self._model.objects.get(user__username=request_user)
 
     def userdata_exists_for(self, request_user):
@@ -26,9 +26,6 @@ class UserAttributesDAO:
         except ObjectDoesNotExist:
             return False
         return False
-
-    def __repr__(self):
-        return "Object of UserAttributesDAO"
 
     def __init__(self):
         """ Constructor """
