@@ -1,0 +1,31 @@
+{% extends "base-nav.html" %}
+{% load icon %}
+{% load static %}
+
+{% block title %}
+    <title> SmartDjango | {{ title }} </title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="row mt-5">
+        <div class="col-3">
+            &nbsp;
+        </div>
+        <div class="col-6">
+            <div class="mt-4">
+                <p>Thank you for registering on SmartDjango web site, <i>{{ username }}</i>.</p>
+                <p>Please login <a href="/login">here</a>.</p>
+                <div class="mt-4">
+                    <a href="/home" class="btn btn-primary">Login</a>
+                              &nbsp;
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            &nbsp;
+        </div>
+    </div>
+
+{% endblock %}

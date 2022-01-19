@@ -10,7 +10,7 @@ import logging
 from django.contrib.auth import authenticate, login
 from django.views.generic import FormView
 
-from BallGame.forms.loginform import LoginForm
+from BallGame.forms.login_form import LoginForm
 
 logger = logging.getLogger(__name__)
 

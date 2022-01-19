@@ -1,0 +1,39 @@
+{% extends "base-nav.html" %}
+{% load icon %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title> SmartDjango | {{ title }} </title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+            <div class="col-3">
+                &nbsp;
+            </div>
+            <div class="col-6">
+                {% if messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <strong>Registration failed</strong>
+                      <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                <div class="jumbotron border mt-4">
+                    {% crispy form %}
+                </div>
+            </div>
+            <div class="col-3">
+                &nbsp;
+            </div>
+    </div>
+
+
+
+{% endblock %}
