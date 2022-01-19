@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_feather',
+    'crispy_forms',
     'crispy_bootstrap5',
     'BallGame'
 ]

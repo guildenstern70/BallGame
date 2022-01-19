@@ -60,21 +60,7 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-@login_required
-def home(request):
-    template = loader.get_template('homepage.html')
 
-    # Welcome message to send to console
-    welcome = "Welcome to BallGame v." + BALL_GAME_VERSION + ".\n\n"
-    welcome += "Players DB with " + db_players_count() + " players.\n"
-    welcome += get_user_data_message(request) + "\n"
-
-    context = {
-        'title': 'Homepage',
-        'username': request.user.username,
-        'console': welcome
-    }
-    return HttpResponse(template.render(context, request))
 
 
 @login_required

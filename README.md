@@ -37,3 +37,10 @@ Deactivate with
 
     deactivate
 
+### Crispy Forms
+
+This project uses Crispy Forms for Bootstrap:
+
+    https://django-crispy-forms.readthedocs.io/en/latest/
+
+
