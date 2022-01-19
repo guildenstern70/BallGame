@@ -8,15 +8,15 @@
 import logging
 
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView
 
 from BallGame.forms.registration_form import RegistrationForm
-from BallGame.settings import BALL_GAME_VERSION
+from BallGame.views.ballgame import BallGameView
 
 logger = logging.getLogger(__name__)
 
 
-class RegistrationOkView(TemplateView):
+class RegistrationOkView(BallGameView):
     template_name = "account/registration_ok.html"
 
     def get_context_data(self, **kwargs):
@@ -24,9 +24,7 @@ class RegistrationOkView(TemplateView):
         if username is None:
             username = '?'
         context = super().get_context_data(**kwargs)
-        context['title'] = 'BallGame'
         context['username'] = username
-        context['version'] = BALL_GAME_VERSION
         return context
 
 
