@@ -5,14 +5,17 @@
 #  This software is distributed under MIT License.
 #  See LICENSE.
 #
+import logging
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 
-from BallGame.dao import UsersDAO, UserAttributesDAO
-from BallGame.services.user_attributes_service import create_user_attributes
+from BallGame.dao import UsersDAO, UserAttributesDAO, PlayersDAO
 
 TEST_USER = 'guest_test'
+
+logger = logging.getLogger(__name__)
 
 
 class DaoTest(TestCase):
@@ -30,9 +33,27 @@ class DaoTest(TestCase):
     def test_should_create_userattributes_if_missing(self):
         """ User Attributes are correctly created """
         user_attributes = UserAttributesDAO()
-        self.assertFalse(user_attributes.userdata_exists_for(TEST_USER))
-        create_user_attributes(TEST_USER)
+        user_dao = UsersDAO()
+        self.assertFalse(user_attributes.user_attributes_exists_for(TEST_USER))
+        user_dao.create_user_attributes(TEST_USER)
         guest_user_data = user_attributes.get_user_attributes(TEST_USER)
         self.assertIsNotNone(guest_user_data)
-        self.assertTrue(user_attributes.userdata_exists_for(TEST_USER))
+        self.assertTrue(user_attributes.user_attributes_exists_for(TEST_USER))
         self.assertFalse(guest_user_data.has_team)
+
+    def test_should_get_all_players(self):
+        players_dao = PlayersDAO()
+        players = players_dao.get_all_players()
+        self.assertIsNotNone(players)
+        self.assertTrue(len(players) > 0)
+        for player in players:
+            logger.info(str(player))
+
+    def test_should_get_players_by_position(self):
+        players_dao = PlayersDAO()
+        players = players_dao.get_players_by_position('P')
+        self.assertIsNotNone(players)
+        self.assertTrue(len(players) > 0)
+        for player in players:
+            self.assertTrue(player.position == 'P')
+            logger.info(str(player))

@@ -8,10 +8,6 @@
  *
  */
 
-main > .container {
-  padding: 60px 15px 0;
-}
-
 textarea {
   background-color: #f3f3f3 !important;;
   font-family: Courier, monospace !important;

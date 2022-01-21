@@ -6,4 +6,3 @@
 #  See LICENSE.
 #
 
-from .user_attributes_service import get_user_data, get_user_data_message

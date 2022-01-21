@@ -6,9 +6,12 @@
 #  See LICENSE.
 #
 #
+import logging
 
 from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
+
+logger = logging.getLogger(__name__)
 
 
 class UserAttributesDAO:
@@ -19,7 +22,7 @@ class UserAttributesDAO:
     def get_user_attributes(self, request_user):
         return self._model.objects.get(user__username=request_user)
 
-    def userdata_exists_for(self, request_user):
+    def user_attributes_exists_for(self, request_user):
         try:
             if self._model.objects.get(user__username=request_user):
                 return True

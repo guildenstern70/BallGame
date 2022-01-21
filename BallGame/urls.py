@@ -16,6 +16,7 @@ from BallGame.views.index import IndexView
 from BallGame.views.login import LoginView
 from BallGame.views.logout import LogoutView
 from BallGame.views.registration import RegistrationView, RegistrationOkView
+from BallGame.views.teammanager import NewTeamView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,6 @@ urlpatterns = [
     path('registered/<str:username>', RegistrationOkView.as_view(), name='registration_ok'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', login_required(HomePageView.as_view()), name='home'),
+    path('newteam/', login_required(NewTeamView.as_view()), name='newteam'),
 ]
 

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    <title> SmartDjango | {{ title }} </title>
+    <title> BallGame | {{ title }} </title>
 {% endblock %}
 
 {% block pagecss %}
@@ -27,11 +27,16 @@
                 </form>
             </div>
           </div>
-
-
+        <div class="row mt-5">
+            <div class="col">
+                {% if has_team %}
+                    <a href="/newteam" class="btn btn-primary">Create New Team</a>
+                {% else %}
+                    <a href="/newteam" class="btn btn-primary">Visit Your Team</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
-
-
 
 {% endblock %}
 
