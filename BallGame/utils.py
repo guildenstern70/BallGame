@@ -7,6 +7,7 @@
 #
 
 import logging
+
 from django.apps import apps
 
 from BallGame.dao.players_dao import get_positions
@@ -29,7 +30,7 @@ def load_data_from_file(filename):
     return lines
 
 
-def create_players_db(apps, schema_editor):
+def create_players_db():
     players = apps.get_model('BallGame', 'Player')
     if players.objects.count() == 0:
         logger.info("Creating players database...")
@@ -46,3 +47,7 @@ def create_players_db(apps, schema_editor):
         logger.info("Done creating players database with %d players.", created_players)
 
 
+def delete_players_db():
+    players = apps.get_model('BallGame', 'Player')
+    for player in players.find_all():
+        player.delete()

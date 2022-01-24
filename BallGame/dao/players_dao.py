@@ -27,6 +27,9 @@ class PlayersDAO:
     def get_all_players(self):
         return self._model.objects.all()
 
+    def get_players_in_team(self, team):
+        return self._model.objects.filter(team=team)
+
     def get_players_by_position(self, position):
         return self._model.objects.filter(position=position)
 

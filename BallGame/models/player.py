@@ -9,6 +9,8 @@ import random
 
 from django.db import models
 
+from BallGame.models.team import Team
+
 
 class Player(models.Model):
     first_name = models.CharField(max_length=40)
@@ -17,6 +19,7 @@ class Player(models.Model):
     age = models.IntegerField()
     height = models.IntegerField()
     weight = models.IntegerField()
+    team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
 
     @classmethod
     def create(cls, position, first_names_collection, last_names_collection):
@@ -29,6 +32,7 @@ class Player(models.Model):
         player.last_name = random.choice(last_names_collection)
         player.height = random.randint(160, 210)
         player.weight = random.randint(58, 120)
+        player.team = None
         return player
 
     def __str__(self):
