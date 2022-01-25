@@ -10,14 +10,14 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2>My Team</h2>
-                <p class="text-secondary">List of the player currently in the team</p>
+                <h2>{{ team_name }}</h2>
+                <p class="text-secondary">Click to delete from the team</p>
                 <ul class="list-group">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                  {% for player in team_players %}
+                    <a href="#" class="list-group-item list-group-item-action">
+                        {{ player }}
+                    </a>
+                  {% endfor %}
                 </ul>
             </div>
             <div class="col-6">

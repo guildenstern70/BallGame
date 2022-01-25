@@ -29,10 +29,16 @@
           </div>
         <div class="row mt-5">
             <div class="col">
-                {% if has_team %}
-                    <a href="/newteam" class="btn btn-primary">Create New Team</a>
+                {% if playerscount == 0 %}
+                    <form method="post" action="/home">
+                        <a href="/createdb" class="btn btn-primary">Create Players DB</a>
+                    </form>
                 {% else %}
-                    <a href="/newteam" class="btn btn-primary">Visit Your Team</a>
+                    {% if has_team %}
+                        <a href="/team" class="btn btn-primary">Visit Your Team</a>
+                    {% else %}
+                        <a href="/team" class="btn btn-primary">Create New Team</a>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

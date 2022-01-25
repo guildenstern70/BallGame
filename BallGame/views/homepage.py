@@ -7,7 +7,8 @@
 #
 import logging
 
-from BallGame.dao import PlayersDAO, UserAttributesDAO, UsersDAO
+from BallGame.dao import PlayersDAO, UsersDAO
+from BallGame.dao.teams_dao import TeamsDAO
 from BallGame.settings import BALL_GAME_VERSION
 from BallGame.views.ballgame import BallGameView
 
@@ -15,42 +16,38 @@ logger = logging.getLogger(__name__)
 
 
 class HomePageView(BallGameView):
+
     template_name = "homepage.html"
-    userattributes_dao = UserAttributesDAO()
-    user_dao = UsersDAO()
+    players_db_count = -1
+    has_team = False
 
-    def get_user_data_message(self, userdata):
+    def welcome_message(self):
         """
-            Get user data message
+        Get welcome message to display in console
         """
-        if userdata:
-            message = 'Found user data for user = ' + self.request.user.username
-        else:
-            message = 'No user data found for user = ' + self.request.user.username
-        return message
-
-    def get_user_data(self):
-        """
-        Get user data. Creates one if no user data is found.
-        """
+        user_dao = UsersDAO()
+        players_dao = PlayersDAO()
+        teams_dao = TeamsDAO()
+        self.players_db_count = players_dao.count()
         username = self.request.user.username
-        logger.info('Getting user data for user = ' + username)
-        if not self.userattributes_dao.user_attributes_exists_for(username):
-            self.user_dao.create_user_attributes(username)
-        user_attributes = self.userattributes_dao.get_user_attributes(username)
-        if user_attributes:
-            logger.info('Found user data for user = ' + username)
+        welcome = "Welcome to BallGame v." + BALL_GAME_VERSION + ".\n\n"
+        if self.players_db_count > 0:
+            welcome += "Players DB with " + str(self.players_db_count) + " players.\n"
         else:
-            logger.info('No user data found for user = ' + username)
-        return user_attributes
+            welcome += "Players DB is empty. \nPlease select 'Create Players DB'\n\n"
+        user = user_dao.find_user(username)
+        if user is not None:
+            self.has_team = teams_dao.user_has_team(user)
+            if self.has_team:
+                welcome += "User " + username + " has a team.\n"
+            else:
+                welcome += "User " + username + " has not yet a team. \nCreate one with 'Create new team'"
+        return welcome
 
     def get_context_data(self, **kwargs):
-        players_dao = PlayersDAO()
         context = super().get_context_data(**kwargs)
-        welcome = "Welcome to BallGame v." + BALL_GAME_VERSION + ".\n\n"
-        welcome += "Players DB with " + str(players_dao.count()) + " players.\n"
-        user_attributes = self.get_user_data()
-        welcome += self.get_user_data_message(user_attributes) + "\n"
+        welcome = self.welcome_message()
+        context['playerscount'] = self.players_db_count
         context['console'] = welcome
-        context['has_team'] = user_attributes.has_team
+        context['has_team'] = self.has_team
         return context

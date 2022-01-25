@@ -16,12 +16,14 @@ class TeamsDAO:
     def count(self):
         return self._model.objects.count()
 
-    def create_new_team(self, name, user):
+    @staticmethod
+    def create_new_team(name, user):
         newteam = Team.create(name=name, user=user)
         newteam.save()
         return newteam
 
-    def add_player_to_team(self, team, player):
+    @staticmethod
+    def add_player_to_team(team, player):
         player.team = team
         player.save()
 
@@ -29,8 +31,8 @@ class TeamsDAO:
         dbteam = self._model.objects.get(id=team.id)
         dbteam.delete()
 
-
-    def remove_player_from_team(self, player):
+    @staticmethod
+    def remove_player_from_team(player):
         player.team = None
         player.save()
 
@@ -39,6 +41,13 @@ class TeamsDAO:
             return self._model.objects.get(name=name)
         except ObjectDoesNotExist:
             return None
+
+    def get_user_team(self, user):
+        try:
+            team = self._model.objects.get(user=user)
+        except ObjectDoesNotExist:
+            return None
+        return team
 
     def user_has_team(self, user):
         try:

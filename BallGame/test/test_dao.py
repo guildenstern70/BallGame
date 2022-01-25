@@ -27,13 +27,13 @@ class DaoTest(TestCase):
         User.objects.create_user(username=TEST_USER, password=TEST_USER)
         create_players_db()
 
-    def test_should_find_an_user(self):
+    def test_app_should_find_an_user(self):
         """ Guest user is found """
         user_dao = UsersDAO()
         guest = user_dao.find_user(TEST_USER)
         self.assertTrue(check_password(TEST_USER, guest.password))
 
-    def test_should_create_userattributes_if_missing(self):
+    def test_app_should_create_userattributes_if_missing(self):
         """ User Attributes are correctly created """
         user_attributes = UserAttributesDAO()
         user_dao = UsersDAO()
@@ -44,7 +44,7 @@ class DaoTest(TestCase):
         self.assertTrue(user_attributes.user_attributes_exists_for(TEST_USER))
         self.assertFalse(guest_user_data.has_team)
 
-    def test_should_get_all_players(self):
+    def test_app_should_get_all_players(self):
         """ Can get all players """
         players_dao = PlayersDAO()
         players = players_dao.get_all_players()
@@ -53,7 +53,7 @@ class DaoTest(TestCase):
         for player in players:
             logger.info(str(player))
 
-    def test_should_get_players_by_position(self):
+    def test_app_should_get_players_by_position(self):
         """ Get players by position """
         players_dao = PlayersDAO()
         players = players_dao.get_players_by_position('P')
@@ -63,7 +63,7 @@ class DaoTest(TestCase):
             self.assertTrue(player.position == 'P')
             logger.info(str(player))
 
-    def test_user_can_own_a_team(self):
+    def test_user_should_be_able_to_own_a_team(self):
         """ A user can have a team + cleanup """
         team_name = 'NEW TEAM'
         user_dao = UsersDAO()
@@ -79,7 +79,7 @@ class DaoTest(TestCase):
         new_team = teams_dao.find_by_name(team_name)
         self.assertIsNone(new_team)
 
-    def test_team_can_have_players(self):
+    def test_team_should_be_able_to_have_players(self):
         """ User can add players to her team + cleanup """
         team_name = 'EAGLES'
         teams_dao = TeamsDAO()
@@ -87,6 +87,8 @@ class DaoTest(TestCase):
         user = user_dao.find_user(TEST_USER)
         players_dao = PlayersDAO()
         team = teams_dao.create_new_team(team_name, user)
+        has_user_team = teams_dao.user_has_team(user)
+        self.assertTrue(has_user_team)
         pitchers = players_dao.get_players_by_position('P')
         self.assertIsNotNone(pitchers[0])
         shortstops = players_dao.get_players_by_position('SS')
@@ -106,5 +108,12 @@ class DaoTest(TestCase):
         for player in players_in_team:
             teams_dao.remove_player_from_team(player)
         logger.info("==")
+
+    def test_app_should_determine_if_user_has_a_team(self):
+        teams_dao = TeamsDAO()
+        user_dao = UsersDAO()
+        user = user_dao.find_user(TEST_USER)
+        has_user_team = teams_dao.user_has_team(user)
+        self.assertFalse(has_user_team)
 
 
