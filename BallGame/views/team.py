@@ -53,7 +53,7 @@ class TeamView(BallGameView):
         context = super().get_context_data(**kwargs)
         team = self.get_team()
         context['title'] = 'Team Manager'
-        context['team_name'] = team.name
+        context['team'] = team
         context['team_players'] = self.players_dao.get_players_in_team(team)
         context['available_players'] = self.players_dao.get_all_players()
         return context

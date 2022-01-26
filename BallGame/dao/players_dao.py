@@ -24,6 +24,9 @@ class PlayersDAO:
     def count(self):
         return self._model.objects.count()
 
+    def find_by_id(self, player_id):
+        return self._model.objects.get(id=player_id)
+
     def get_all_players(self):
         return self._model.objects.all()
 

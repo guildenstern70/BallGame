@@ -8,7 +8,12 @@
 from django.apps import apps
 from django.core.exceptions import ObjectDoesNotExist
 
+from BallGame.dao import PlayersDAO
 from BallGame.models.team import Team
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class TeamsDAO:
@@ -24,8 +29,23 @@ class TeamsDAO:
 
     @staticmethod
     def add_player_to_team(team, player):
-        player.team = team
-        player.save()
+        if player.team != team:
+            player.team = team
+            player.save()
+            logger.info("Player %s added to team %s", player.last_name, team.name)
+        else:
+            logger.info("Player %s is already in team %s", player.last_name, team.name)
+
+    def add_player_to_team_ids(self, team_id, player_id):
+        """ Add player id to team id. Return True if operation succeeded """
+        try:
+            team = self._model.objects.get(id=team_id)
+            playersdao = PlayersDAO()
+            player = playersdao.find_by_id(player_id)
+            self.add_player_to_team(team, player)
+            return True
+        except ObjectDoesNotExist:
+            return False
 
     def delete(self, team):
         dbteam = self._model.objects.get(id=team.id)
