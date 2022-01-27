@@ -10,6 +10,7 @@ import random
 from django.db import models
 
 from BallGame.models.team import Team
+from BallGame.services.playergen import PlayerGenerator
 
 
 class Player(models.Model):
@@ -19,6 +20,16 @@ class Player(models.Model):
     age = models.IntegerField()
     height = models.IntegerField()
     weight = models.IntegerField()
+    speed = models.IntegerField(default=0)
+    bat_contact = models.IntegerField(default=0)
+    bat_power = models.IntegerField(default=0)
+    bat_eye = models.IntegerField(default=0)
+    bat_defense = models.IntegerField(default=0)
+    pitch_quality = models.IntegerField(default=0)
+    pitch_control = models.IntegerField(default=0)
+    pitch_movement = models.IntegerField(default=0)
+    pitch_stamina = models.IntegerField(default=0)
+
     team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
 
     @classmethod
@@ -27,13 +38,10 @@ class Player(models.Model):
         Create a new player
         """
         player = cls(position=position)
-        player.age = random.randint(17, 35)
         player.first_name = random.choice(first_names_collection)
         player.last_name = random.choice(last_names_collection)
-        player.height = random.randint(160, 210)
-        player.weight = random.randint(58, 120)
         player.team = None
-        return player
+        return PlayerGenerator(player).shape()
 
     def __str__(self):
         return self.first_name + " " + self.last_name + " (" + self.position + ")"
