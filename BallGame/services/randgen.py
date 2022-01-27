@@ -11,8 +11,7 @@
 #
 #
 
-import time
-from numpy.random import seed, randn, randint
+from numpy.random import randn, randint
 
 
 class RandGen:
