@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 
 from BallGame.dao import PlayersDAO, UsersDAO
 from BallGame.dao.teams_dao import TeamsDAO
+from BallGame.utils import get_positions
 from BallGame.views.ballgame import BallGameView
 
 logger = logging.getLogger(__name__)
@@ -49,11 +50,23 @@ class TeamView(BallGameView):
                 team = self.teams_dao.get_user_team(user)
         return team
 
+    def get_filter_position(self):
+        try:
+            filter_position = self.kwargs['position']
+        except KeyError:
+            filter_position = None
+        return filter_position
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         team = self.get_team()
+        filter_position = self.get_filter_position()
         context['title'] = 'Team Manager'
         context['team'] = team
+        context['positions'] = get_positions()
         context['team_players'] = self.players_dao.get_players_in_team(team)
-        context['available_players'] = self.players_dao.get_all_players()
+        if filter_position is None:
+            context['available_players'] = self.players_dao.get_all_players()
+        else:
+            context['available_players'] = self.players_dao.get_players_by_position(filter_position)
         return context

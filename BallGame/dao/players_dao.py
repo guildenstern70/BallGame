@@ -12,13 +12,6 @@ from django.apps import apps
 logger = logging.getLogger(__name__)
 
 
-def get_positions():
-    """
-    Get baseball positions
-    """
-    return ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
-
-
 class PlayersDAO:
 
     def count(self):

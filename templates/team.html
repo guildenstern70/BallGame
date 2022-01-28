@@ -23,6 +23,16 @@
             <div class="col-6">
                 <h2>Available Players</h2>
                 <p class="text-secondary">Click to add to the team</p>
+                <div class="dropdown mb-2">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter by position
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="filterByPositionDropdown">
+                      {% for position in positions %}
+                          <li><a class="dropdown-item" href="/team/{{ position }}">{{ position }}</a></li>
+                      {% endfor %}
+                  </ul>
+                </div>
                 <ul class="list-group">
                     {% for player in available_players %}
                     <a href="/addplayer/{{ team.id }}/{{ player.id }}" class="list-group-item list-group-item-action">

@@ -10,10 +10,16 @@ import logging
 
 from django.apps import apps
 
-from BallGame.dao.players_dao import get_positions
 from BallGame.models import Player
 
 logger = logging.getLogger(__name__)
+
+
+def get_positions():
+    """
+    Get baseball positions
+    """
+    return ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
 
 
 def load_data_from_file(filename):
