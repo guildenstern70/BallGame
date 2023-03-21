@@ -31,11 +31,14 @@ class PlayerGenerator:
 
     def get_quality(self, is_pitch_attribute):
         """
-        Return the player's quality attribute
+        Return the player's quality attribute.
+        Sets qualities according to position.
         """
         max_attr = 40
-        if self.player.position == "P" and is_pitch_attribute:
-            max_attr = 100
-        elif self.player.position != "P" and not is_pitch_attribute:
-            max_attr = 100
+        if self.player.is_pitcher():
+            if is_pitch_attribute:
+                max_attr = 100
+        else:
+            if not is_pitch_attribute:
+                max_attr = 100
         return self.randgen.get_rand_int(0, max_attr)

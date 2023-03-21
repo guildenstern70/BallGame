@@ -19,7 +19,7 @@ def get_positions():
     """
     Get baseball positions
     """
-    return ['P', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
+    return ['SP', 'RP', 'CL', 'SU', 'C', '1B', '2B', '3B', 'SS', 'LF', 'CF', 'RF']
 
 
 def load_data_from_file(filename):

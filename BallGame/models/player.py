@@ -32,6 +32,9 @@ class Player(models.Model):
 
     team = models.ForeignKey(Team, on_delete=models.DO_NOTHING, default=None, blank=True, null=True)
 
+    def is_pitcher(self):
+        return self.position == "CL" or self.position == "RP" or self.position == "SP" or self.position == "SU"
+
     @classmethod
     def create(cls, position, first_names_collection, last_names_collection):
         """

@@ -21,11 +21,9 @@ Install Python libraries:
 
     pip install -r requirements.txt
 
-To create and populate the database run:
+To create and populate the database run: (delete the database file if it already exists)
 
-    python manage.py migrate
-    python manage.py makemigrations BallGame
-    python manage.py migrate BallGame
+    ./setup.sh
 
 ### How the players database is created
 
