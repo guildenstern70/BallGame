@@ -52,7 +52,8 @@ class TeamsDAO:
         dbteam.delete()
 
     @staticmethod
-    def remove_player_from_team(player):
+    def remove_player_from_team(player_id):
+        player = PlayersDAO().find_by_id(player_id)
         player.team = None
         player.save()
 

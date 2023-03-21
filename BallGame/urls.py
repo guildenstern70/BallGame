@@ -23,7 +23,7 @@ from BallGame.views.team import TeamView
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
-    path('addplayer/<int:team_id>/<int:player_id>', AddPlayerView.as_view(), name='add_player'),
+    path('player/<str:action>/<int:team_id>/<int:player_id>', AddPlayerView.as_view(), name='player'),
     path('createdb/', CreatePlayersView.as_view(), name='createdb'),
     path('home/', login_required(HomePageView.as_view()), name='home'),
     path('login/', LoginView.as_view(), name='login'),

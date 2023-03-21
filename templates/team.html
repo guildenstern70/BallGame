@@ -11,10 +11,10 @@
         <div class="row">
             <div class="col-6">
                 <h2>{{ team.name }}</h2>
-                <p class="text-secondary">Click to delete from the team</p>
+                <p class="text-secondary">Click player  to remove from the team</p>
                 <ul class="list-group">
                   {% for player in team_players %}
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="/player/remove/0/{{ player.id }}" class="list-group-item list-group-item-action">
                         {{ player }}
                     </a>
                   {% endfor %}
@@ -35,7 +35,7 @@
                 </div>
                 <ul class="list-group">
                     {% for player in available_players %}
-                    <a href="/addplayer/{{ team.id }}/{{ player.id }}" class="list-group-item list-group-item-action">
+                    <a href="/player/add/{{ team.id }}/{{ player.id }}" class="list-group-item list-group-item-action">
                         {{ player }}
                     </a>
                     {% endfor %}

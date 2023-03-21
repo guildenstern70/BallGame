@@ -56,11 +56,11 @@ class DaoTest(TestCase):
     def test_app_should_get_players_by_position(self):
         """ Get players by position """
         players_dao = PlayersDAO()
-        players = players_dao.get_players_by_position('P')
+        players = players_dao.get_players_by_position('C')
         self.assertIsNotNone(players)
         self.assertTrue(len(players) > 0)
         for player in players:
-            self.assertTrue(player.position == 'P')
+            self.assertTrue(player.position == 'C')
             logger.info(str(player))
 
     def test_user_should_be_able_to_own_a_team(self):
@@ -89,7 +89,7 @@ class DaoTest(TestCase):
         team = teams_dao.create_new_team(team_name, user)
         has_user_team = teams_dao.user_has_team(user)
         self.assertTrue(has_user_team)
-        pitchers = players_dao.get_players_by_position('P')
+        pitchers = players_dao.get_players_by_position('SP')
         self.assertIsNotNone(pitchers[0])
         shortstops = players_dao.get_players_by_position('SS')
         self.assertIsNotNone(shortstops[0])
@@ -106,7 +106,7 @@ class DaoTest(TestCase):
         # Clean up
         logger.info("== Players in team " + team_name)
         for player in players_in_team:
-            teams_dao.remove_player_from_team(player)
+            teams_dao.remove_player_from_team(player.id)
         logger.info("==")
 
     def test_app_should_determine_if_user_has_a_team(self):
