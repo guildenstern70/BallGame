@@ -17,6 +17,10 @@ If unsure, try with "admin/admin"
 
 ### Setup
 
+Install Python libraries:
+
+    pip install -r requirements.txt
+
 To create and populate the database run:
 
     python manage.py migrate
@@ -42,5 +46,4 @@ Deactivate with
 This project uses Crispy Forms for Bootstrap:
 
     https://django-crispy-forms.readthedocs.io/en/latest/
-
 
