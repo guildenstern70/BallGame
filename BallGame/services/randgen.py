@@ -6,11 +6,6 @@
 #  See LICENSE.
 #
 
-#
-#  The Ball Game Project
-#
-#
-
 from numpy.random import randn, randint
 
 

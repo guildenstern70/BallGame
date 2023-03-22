@@ -8,15 +8,15 @@
 import logging
 
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView
+from django.views.generic import FormView, TemplateView
 
 from BallGame.forms.registration_form import RegistrationForm
-from BallGame.views.ballgame import BallGameView
+from BallGame.views.ballgame import BallGameMixin
 
 logger = logging.getLogger(__name__)
 
 
-class RegistrationOkView(BallGameView):
+class RegistrationOkView(BallGameMixin, TemplateView):
     template_name = "account/registration_ok.html"
 
     def get_context_data(self, **kwargs):

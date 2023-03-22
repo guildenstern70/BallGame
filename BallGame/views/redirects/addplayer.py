@@ -27,7 +27,7 @@ def remove_player(playerid):
 
 
 class AddPlayerView(RedirectView):
-    url = '/team'
+    url = '/teamlist'
 
     def get_redirect_url(self, *args, **kwargs):
         logger.info('Adding/Removing player to team... ')

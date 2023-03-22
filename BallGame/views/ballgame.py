@@ -5,18 +5,25 @@
 #  This software is distributed under MIT License.
 #  See LICENSE.
 #
-from django.views.generic import TemplateView
 
 from BallGame.settings import BALL_GAME_VERSION
 
 
-class BallGameView(TemplateView):
+class BallGameMixin:
+    """
+    This mixin allows Django views to get a context
+    already populated with BallGame template items, such as
+        - Logged User
+        - App Title
+        - App Version
+    This mixin has to be used *only* with Django views with self.request
+    populated.
+    """
 
-    def get_context_data(self, **kwargs):
+    def get_ballgame_context(self, context):
         username = self.request.user.username
         if username is None:
             username = '?'
-        context = super().get_context_data(**kwargs)
         context['title'] = 'BallGame'
         context['username'] = username
         context['version'] = BALL_GAME_VERSION

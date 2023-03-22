@@ -7,15 +7,17 @@
 #
 import logging
 
+from django.views.generic import TemplateView
+
 from BallGame.dao import PlayersDAO, UsersDAO
 from BallGame.dao.teams_dao import TeamsDAO
 from BallGame.settings import BALL_GAME_VERSION
-from BallGame.views.ballgame import BallGameView
+from BallGame.views.ballgame import BallGameMixin
 
 logger = logging.getLogger(__name__)
 
 
-class HomePageView(BallGameView):
+class HomePageView(BallGameMixin, TemplateView):
 
     template_name = "homepage.html"
     players_db_count = -1
@@ -47,6 +49,7 @@ class HomePageView(BallGameView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         welcome = self.welcome_message()
+        context = self.get_ballgame_context(context)
         context['playerscount'] = self.players_db_count
         context['console'] = welcome
         context['has_team'] = self.has_team

@@ -11,7 +11,8 @@
         <div class="row">
             <div class="col-6">
                 <h2>{{ team.name }}</h2>
-                <p class="text-secondary">Click player  to remove from the team</p>
+                <p class="text-secondary">Click to remove from the team</p>
+                <p class="text-secondary">Your team should have at least 25 players - now {{ team_players|length }}</p>
                 <ul class="list-group">
                   {% for player in team_players %}
                     <a href="/player/remove/0/{{ player.id }}" class="list-group-item list-group-item-action">
@@ -28,13 +29,14 @@
                     Filter by position
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="filterByPositionDropdown">
+                          <li><a class="dropdown-item" href="/teamlist">-- None --</a></li>
                       {% for position in positions %}
-                          <li><a class="dropdown-item" href="/team/{{ position }}">{{ position }}</a></li>
+                          <li><a class="dropdown-item" href="/teamlist/{{ position }}">{{ position }}</a></li>
                       {% endfor %}
                   </ul>
                 </div>
                 <ul class="list-group">
-                    {% for player in available_players %}
+                    {% for player in object_list %}
                     <a href="/player/add/{{ team.id }}/{{ player.id }}" class="list-group-item list-group-item-action">
                         {{ player }}
                     </a>
