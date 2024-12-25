@@ -7,14 +7,6 @@
 
 A statistical baseball simulation.
 
-### Admin App
-
-If not already done, create super-user with
-
-    python manage.py createsuperuser
-    
-If unsure, try with "admin/admin"
-
 ### Setup
 
 Install Python libraries:
@@ -24,6 +16,14 @@ Install Python libraries:
 To create and populate the database run: (delete the database file if it already exists)
 
     ./setup.sh
+
+### Admin App
+
+If not already done, create super-user with
+
+    python manage.py createsuperuser
+    
+If unsure, try with "admin/admin"
 
 ### How the players database is created
 

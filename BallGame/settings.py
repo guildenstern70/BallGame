@@ -1,7 +1,7 @@
 #
 #  The Ball Game Project
 #
-#  Copyright (c) 2021-23 Alessio Saltarin
+#  Copyright (c) 2021-24 Alessio Saltarin
 #  This software is distributed under MIT License.
 #  See LICENSE.
 #
@@ -124,7 +124,7 @@ USE_TZ = False
 LOGIN_URL = '/login'
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/app/static/'
+STATIC_ROOT = 'app/static/'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -3,14 +3,14 @@
 #
 # The Ball Game Project
 #
-# Copyright (c) 2021-23 Alessio Saltarin
+# Copyright (c) 2021-24 Alessio Saltarin
 # This software is distributed under MIT License.
 # See LICENSE.
 #
 #
 echo "building db..."
 python manage.py migrate
-python manage.py createsuperuser --noinput
+python manage.py createsuperuser --username admin --noinput
 echo "make migrations..."
 python manage.py makemigrations BallGame
 echo "migrate..."
