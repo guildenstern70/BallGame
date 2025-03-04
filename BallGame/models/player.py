@@ -46,7 +46,23 @@ class Player(models.Model):
         player.team = None
         return PlayerGenerator(player).shape()
 
+    def get_pitcher_value(self):
+        if self.is_pitcher():
+            value = (self.pitch_quality + self.pitch_control + self.pitch_movement + self.pitch_stamina) / 4
+            return f"{value:.2f}"
+        return 0.0
+
+    def get_batter_value(self):
+        if not self.is_pitcher():
+            value = (self.bat_contact + self.bat_power + self.bat_eye + self.bat_defense) / 4
+            return f"{value:.2f}"
+        return 0.0
+
     def __str__(self):
-        return self.first_name + " " + self.last_name + " (" + self.position + ")"
+        is_pitcher = self.is_pitcher()
+        if is_pitcher:
+            return self.position + " - " + self.first_name + " " + self.last_name + " [" + self.get_pitcher_value() + "Mln $]"
+        else:
+            return self.position + " - " + self.first_name + " " + self.last_name + " [" + self.get_batter_value() + "Mln $]"
 
 

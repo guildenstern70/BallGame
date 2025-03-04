@@ -32,5 +32,6 @@ urlpatterns = [
     path('register/', RegistrationView.as_view(), name='registration'),
     path('registered/<str:username>', RegistrationOkView.as_view(), name='registration_ok'),
     path('teamlist/', login_required(TeamListView.as_view()), name='team-list'),
-    path('teamlist/<str:position>', login_required(TeamListView.as_view()), name='team-list'),
+    path('teamlist/bypos/<str:position>', login_required(TeamListView.as_view()), name='team-list'),
+    path('teamlist/bykind/<str:kind>', login_required(TeamListView.as_view()), name='team-list'),
 ]

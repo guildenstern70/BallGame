@@ -11,35 +11,64 @@
         <div class="row">
             <div class="col-6">
                 <h2>{{ team.name }}</h2>
-                <p class="text-secondary">Click to remove from the team</p>
                 <p class="text-secondary">Your team should have at least 25 players - now {{ team_players|length }}</p>
-                <ul class="list-group">
-                  {% for player in team_players %}
-                    <a href="/player/remove/0/{{ player.id }}" class="list-group-item list-group-item-action">
-                        {{ player }}
-                    </a>
-                  {% endfor %}
-                </ul>
+                <p class="text-secondary">Click to remove from the team</p>
+
+                {% if how_many_pitchers > 0 %}
+                    <div class="mt-3 text-info">PITCHERS:
+                        <ul class="list-group">
+                            {% for player in pitchers %}
+                                <a href="/player/remove/0/{{ player.id }}"
+                                   class="list-group-item list-group-item-action">
+                                    {{ player }}
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if how_many_batters > 0 %}
+                    <div class="mt-3 text-info">BATTERS:
+                        <ul class="list-group">
+                            {% for player in batters %}
+                                <a href="/player/remove/0/{{ player.id }}"
+                                   class="list-group-item list-group-item-action">
+                                    {{ player }}
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
             <div class="col-6">
                 <h2>Available Players</h2>
                 <p class="text-secondary">Click to add to the team</p>
                 <div class="dropdown mb-2">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by position
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="filterByPositionDropdown">
-                          <li><a class="dropdown-item" href="/teamlist">-- None --</a></li>
-                      {% for position in positions %}
-                          <li><a class="dropdown-item" href="/teamlist/{{ position }}">{{ position }}</a></li>
-                      {% endfor %}
-                  </ul>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownPosition"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        By position
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterByPositionDropdown">
+                        <li><a class="dropdown-item" href="/teamlist">-- None --</a></li>
+                        {% for position in positions %}
+                            <li><a class="dropdown-item" href="/teamlist/bypos/{{ position }}">{{ position }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownType"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        By type
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterByKindDropdown">
+                        <li><a class="dropdown-item" href="/teamlist">-- All --</a></li>
+                        <li><a class="dropdown-item" href="/teamlist/bykind/pitchers">Pitchers</a></li>
+                        <li><a class="dropdown-item" href="/teamlist/bykind/batters">Batters</a></li>
+                    </ul>
                 </div>
                 <ul class="list-group">
                     {% for player in object_list %}
-                    <a href="/player/add/{{ team.id }}/{{ player.id }}" class="list-group-item list-group-item-action">
-                        {{ player }}
-                    </a>
+                        <a href="/player/add/{{ team.id }}/{{ player.id }}"
+                           class="list-group-item list-group-item-action">
+                            {{ player }}
+                        </a>
                     {% endfor %}
                 </ul>
 
