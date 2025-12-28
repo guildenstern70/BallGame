@@ -38,6 +38,14 @@ If not already done, create super-user with
     
 If unsure, try with "admin/admin"
 
+### Test
+
+Run tests with
+
+    python manage.py test BallGame
+
+
+
 ### How the players database is created
 
 The database player is created when running the second migration, 'player_userattributes'.

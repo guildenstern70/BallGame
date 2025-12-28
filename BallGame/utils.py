@@ -48,7 +48,7 @@ def create_players_db():
         while created_players < 50:
             for position in get_positions():
                 player = Player.create(position, first_names, last_names)
-                player.save(player)
+                player.save()
                 created_players += 1
         logger.info("Done creating players database with %d players.", created_players)
 
