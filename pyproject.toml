@@ -1,0 +1,13 @@
+[project]
+name = "BallGame"
+version = "0.1.0"
+description = "A Baseball Simulation Game"
+authors = [
+    { name = "Alessio Saltarin", email = "alessiosaltarin@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "crispy-bootstrap5>=2025.6",
+    "django>=6.0",
+    "django-feather>=0.3.0",
+]

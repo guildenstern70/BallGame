@@ -11,11 +11,24 @@ A statistical baseball simulation.
 
 Install Python libraries:
 
-    pip install -r requirements.txt
+    uv sync
 
 To create and populate the database run: (delete the database file if it already exists)
 
-    ./setup.sh
+1. Migrate to saved state
+
+```bash
+echo "migrate..."
+python manage.py migrate
+```
+
+2. Publish migrations and migrate BallGame app
+
+```bash
+echo "make migrations..."
+python manage.py makemigrations BallGame
+python manage.py migrate BallGame
+```
 
 ### Admin App
 
@@ -44,4 +57,3 @@ Deactivate with
 This project uses Crispy Forms for Bootstrap:
 
     https://django-crispy-forms.readthedocs.io/en/latest/
-

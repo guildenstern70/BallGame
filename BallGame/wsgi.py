@@ -1,10 +1,11 @@
-#
-#  The Ball Game Project
-#
-#  Copyright (c) 2021-24 Alessio Saltarin
-#  This software is distributed under MIT License.
-#  See LICENSE.
-#
+"""
+WSGI config for BallGame project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/6.0/howto/deployment/wsgi/
+"""
 
 import os
 
